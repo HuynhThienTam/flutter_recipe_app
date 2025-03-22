@@ -60,3 +60,13 @@ Future<List<String>> fetchCategories() async {
       throw Exception('Failed to load latest meals');
     }
   }
+  Future<List<RecipeModel>> searchRecipes(String query) async {
+    final response = await http.get(Uri.parse('https://www.themealdb.com/api/json/v1/1/search.php?s=$query'));
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      return (data['meals'] as List)
+          .map((meal) => RecipeModel.fromJson(meal))
+          .toList();
+    }
+    return [];
+  }

@@ -57,14 +57,6 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  // Future<void> loadCategories() async {
-  //   List<String> fetchedCategories = await fetchCategories();
-  //   setState(() {
-  //     categories = fetchedCategories;
-  //     isLoading = false;
-  //     selectedCategory=categories[0];
-  //   });
-  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,8 +68,12 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 40,
             ),
             Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: SearchBarWidget()),
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: SearchBarWidget(
+                controller: TextEditingController(),
+                isReadOnly: true,
+              ),
+            ),
             SizedBox(
               height: 20,
             ),
