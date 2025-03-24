@@ -72,6 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: SearchBarWidget(
                 controller: TextEditingController(),
                 isReadOnly: true,
+                onPressed: (){},
               ),
             ),
             SizedBox(

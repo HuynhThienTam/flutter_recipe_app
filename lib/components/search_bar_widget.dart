@@ -6,12 +6,14 @@ class SearchBarWidget extends StatelessWidget {
   final TextEditingController controller;
   final ValueChanged<String>? onChanged;
   final bool isReadOnly;
+  final VoidCallback onPressed;
 
   SearchBarWidget({
     Key? key,
     required this.controller,
     this.onChanged,
     this.isReadOnly = false,
+    required this.onPressed,
   }) : super(key: key);
 
   @override
@@ -36,13 +38,16 @@ class SearchBarWidget extends StatelessWidget {
           color: neutralColor.shade400,
           fontSize: 18,
         ),
-        prefixIcon: Padding(
-          padding: const EdgeInsets.all(14),
-          child: Image.asset(
-            "assets/icons/search_icon.png",
-            width: 12,
-            height: 12,
-            fit: BoxFit.contain,
+        prefixIcon: GestureDetector(  // Dùng GestureDetector để bắt sự kiện nhấn
+          onTap: onPressed, // Khi nhấn icon sẽ gọi hàm onPressed
+          child: Padding(
+            padding: const EdgeInsets.all(14),
+            child: Image.asset(
+              "assets/icons/search_icon.png",
+              width: 12,
+              height: 12,
+              fit: BoxFit.contain,
+            ),
           ),
         ),
         contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),

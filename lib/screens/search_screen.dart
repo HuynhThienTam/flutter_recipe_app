@@ -37,11 +37,11 @@ class _SearchScreenState extends State<SearchScreen> {
     });
   }
 
-  void _onResultSelected(RecipeModel recipe) {
+  void _onResultSelected(List<RecipeModel> recipes) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => ResultsScreen(results: [recipe]),
+        builder: (context) => ResultsScreen(results: recipes),
       ),
     );
   }
@@ -60,6 +60,7 @@ class _SearchScreenState extends State<SearchScreen> {
             child: SearchBarWidget(
               controller: _searchController,
               onChanged: _onSearchChanged,
+              onPressed: () => _onResultSelected(_searchResults),
             ),
           ),
           SizedBox(
@@ -72,6 +73,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 itemCount: _searchResults.length,
                 itemBuilder: (context, index) {
                   return InkWell(
+                    onTap: () => _onResultSelected([_searchResults[index]]),
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 14),
                       height: 40, // Giữ nguyên chiều cao
